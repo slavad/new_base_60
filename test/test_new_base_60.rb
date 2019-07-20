@@ -49,6 +49,11 @@ class TestCase < MiniTest::Spec
     assert NewBase60.new("-464").to_s == "-0:464"
   end
 
+  def test_base60_to_s_object_id
+    num = NewBase60.new("4JG")
+    assert num.to_s.object_id ==  num.to_s.object_id
+  end
+
   def test_inspect
     assert NewBase60.new("464").inspect == "0:464"
     assert NewBase60.new("-464").inspect == "-0:464"

@@ -11,11 +11,12 @@ class NewBase60
     to_i
     abs
     to_date
+    to_s
     freeze
   end
 
   def to_s
-    if negative?
+    @to_s ||= if negative?
       "-#{PREFIX}#{string_abs}"
     else
       "#{PREFIX}#{string_abs}"
