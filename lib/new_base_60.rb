@@ -2,7 +2,7 @@ require "date"
 require "time"
 
 class NewBase60
-  VERSION    = '1.1.2'
+  VERSION    = '1.1.3'
   VOCABULARY = "0123456789ABCDEFGHJKLMNPQRSTUVWXYZ_abcdefghijkmnopqrstuvwxyz"
 
   def initialize(base_60)
