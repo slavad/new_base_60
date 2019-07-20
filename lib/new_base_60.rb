@@ -10,14 +10,33 @@ class NewBase60
   end
 
   def to_s
-    @base_60
+    if negative?
+      "-0I#{abs}"
+    else
+      "0I#{abs}"
+    end
+  end
+
+  alias inspect to_s
+
+  def abs
+    if negative?
+      @base_60[1..-1]
+    else
+      @base_60
+    end
+  end
+
+  def negative?
+    # minus sign
+    @base_60.bytes.first == 45
   end
 
   # Converts into a base 10 integer.
   def to_i
     num = 0
     coeff = 1
-    if @base_60.bytes.first == 45 # minus sign
+    if negative?
       coeff = -1
     end
 
