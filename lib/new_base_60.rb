@@ -8,7 +8,10 @@ class NewBase60
 
   def initialize(base_60)
     @base_60 = base_60
-    @to_i = to_i
+    to_i
+    abs
+    to_date
+    freeze
   end
 
   def to_s
@@ -73,7 +76,13 @@ class NewBase60
   end
 
   def abs
-    @abs ||= NewBase60.new(string_abs)
+    @abs ||= lambda do
+      if self.negative?
+        NewBase60.new(string_abs)
+      else
+        self
+      end
+    end.call
   end
 
   def string_abs

@@ -10,7 +10,14 @@ class TestCase < MiniTest::Spec
 
   def test_abs
     assert NewBase60.new("464").abs == NewBase60.new("464")
+    pos_num = NewBase60.new("464")
+    assert pos_num.abs.object_id == pos_num.object_id
     assert NewBase60.new("-464").abs == NewBase60.new("464")
+  end
+
+  def test_base60_abs_object_id
+    num = NewBase60.new("4JG")
+    assert num.abs.object_id ==  num.abs.object_id
   end
 
   def test_equals
@@ -103,5 +110,11 @@ class TestCase < MiniTest::Spec
     assert (-14764).to_sxgf()  == "-0:464"
     assert (-14764).to_sxgf(9) == "-0:000000464"
     refute (-12345).to_sxgf(9) == "-0:000000464"
+  end
+
+  def test_base60_frozen
+    assert_raises FrozenError, "can't modify frozen NewBase60" do
+      NewBase60.new("4JG").instance_variable_set('@to_i', 0)
+    end
   end
 end
