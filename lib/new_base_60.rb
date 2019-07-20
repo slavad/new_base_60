@@ -17,7 +17,7 @@ class NewBase60
   def to_i
     num = 0
     coeff = 1
-    if @base_60.bytes.first == 45 # minius sign
+    if @base_60.bytes.first == 45 # minus sign
       coeff = -1
     end
 
