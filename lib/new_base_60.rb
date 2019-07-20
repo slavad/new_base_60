@@ -63,7 +63,7 @@ class Integer
     if self.negative?
       sxg = "-#{sxg}"
     end
-    sxg
+    NewBase60.new(sxg)
   end
 
   # Converts a base 10 integer into a NewBase60 string,
