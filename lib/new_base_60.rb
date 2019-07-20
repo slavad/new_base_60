@@ -21,7 +21,7 @@ class NewBase60
       coeff = -1
     end
 
-    @base_60.bytes do |char|
+    @base_60.bytes.each do |char|
       case char
       when 48..57   then char -= 48
       when 65..72   then char -= 55
