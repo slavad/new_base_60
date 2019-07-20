@@ -11,9 +11,9 @@ class NewBase60
 
   def to_s
     if negative?
-      "-0I#{abs}"
+      "-0:#{abs}"
     else
-      "0I#{abs}"
+      "0:#{abs}"
     end
   end
 
