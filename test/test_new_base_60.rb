@@ -8,6 +8,15 @@ class TestCase < MiniTest::Spec
     refute NewBase60.new("464").to_i == 12345
   end
 
+  def test_base60_to_base10_negative
+    assert NewBase60.new("-464").to_i == -14764
+    refute NewBase60.new("-464").to_i == -12345
+  end
+
+  def test_base60_to_base10_zero
+    assert NewBase60.new("0").to_i == 0
+  end
+
   def test_base60_to_date
     assert NewBase60.new("").to_date == Date.parse("1970/01/01")
     assert NewBase60.new("4JG").to_date == Date.parse("2012/06/05")
@@ -23,6 +32,15 @@ class TestCase < MiniTest::Spec
   def test_base10_to_base60
     assert 14764.to_sxg == "464"
     refute 12345.to_sxg == "464"
+  end
+
+  def test_base10_to_base60_negative
+    assert -14764.to_sxg == "-464"
+    refute -12345.to_sxg == "-464"
+  end
+
+  def test_base10_to_base60_zero
+    assert 0.to_sxg == "0"
   end
 
   def test_base10_to_base60_with_leading_zeroes

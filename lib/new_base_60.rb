@@ -16,6 +16,10 @@ class NewBase60
   # Converts into a base 10 integer.
   def to_i
     num = 0
+    coeff = 1
+    if @base_60.bytes.first == 45 # minius sign
+      coeff = -1
+    end
 
     @base_60.bytes do |char|
       case char
@@ -34,7 +38,7 @@ class NewBase60
       num = 60 * num + char
     end
 
-    num
+    coeff*num
   end
 
   # Converts into a Date.
@@ -46,9 +50,9 @@ end
 class Integer
   # Converts a base 10 integer into a NewBase60 string.
   def to_sxg
-    return "" if zero?
+    return "0" if zero?
 
-    num = self
+    num = self.abs
     sxg = ""
 
     while num > 0 do
@@ -56,7 +60,9 @@ class Integer
       sxg = "#{NewBase60::VOCABULARY[mod,1]}#{sxg}"
       num = (num - mod) / 60
     end
-
+    if self.negative?
+      sxg = "-#{sxg}"
+    end
     sxg
   end
 
